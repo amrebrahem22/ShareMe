@@ -7,18 +7,18 @@ import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
 import { client } from "../client";
 
-
 const Login = () => {
   const navigate = useNavigate();
 
   const responseGoogle = (response) => {
     let decoded = jwt_decode(response.credential);
+    console.log(decoded);
 
     localStorage.setItem("user", JSON.stringify(decoded));
 
-    const { name, jti, picture } = decoded;
+    const { name, aud, picture } = decoded;
     const doc = {
-      _id: jti,
+      _id: aud,
       _type: "user",
       username: name,
       image: picture,
