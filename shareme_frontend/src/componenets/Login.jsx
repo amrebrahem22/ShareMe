@@ -20,7 +20,7 @@ const Login = () => {
     const doc = {
       _id: aud,
       _type: "user",
-      username: name,
+      userName: name,
       image: picture,
     };
 
