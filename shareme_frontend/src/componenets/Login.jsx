@@ -48,6 +48,7 @@ const Login = () => {
 
         <div className="shadow-2xl">
           <GoogleLogin
+            clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
             onSuccess={responseGoogle}
             onError={() => {
               console.log("Login Failed");
