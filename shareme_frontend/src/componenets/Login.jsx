@@ -11,9 +11,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   const responseGoogle = (response) => {
-    let decoded = jwt_decode(response.credential);
-    console.log(decoded);
     localStorage.clear();
+    let decoded = jwt_decode(response.credential);
+
     localStorage.setItem("user", JSON.stringify(decoded));
 
     const { name, aud, picture } = decoded;
