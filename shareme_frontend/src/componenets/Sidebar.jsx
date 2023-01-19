@@ -27,7 +27,7 @@ const Sidebar = ({ user, closeToggle }) => {
           <img src={logo} alt="Logo" className="w-full" />
         </Link>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-4">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -38,7 +38,7 @@ const Sidebar = ({ user, closeToggle }) => {
             <RiHomeFill />
             Home
           </NavLink>
-          <h3 className="mt-2 px-5 text-base 2xl:text-xl">
+          <h3 className="mt-1 px-5 text-base 2xl:text-lg text-gray-800">
             Discover Categories
           </h3>
           {categories.slice(0, categories.length - 1).map((category) => (
@@ -70,7 +70,7 @@ const Sidebar = ({ user, closeToggle }) => {
             className="w-10 h-10 rounded-full"
             alt="user profile"
           />
-          <p>{user.username}</p>
+          <p>{user.userName}</p>
         </Link>
       )}
     </div>
