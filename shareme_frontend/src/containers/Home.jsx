@@ -19,7 +19,7 @@ const Home = () => {
       : localStorage.clear();
 
   useEffect(() => {
-    const query = userQuery(userInfo?.aud);
+    const query = userQuery(userInfo?.sub);
 
     client
       .fetch(query)

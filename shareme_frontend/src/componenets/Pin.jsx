@@ -23,7 +23,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     });
   };
 
-  let alreadySaved = save?.filter((item) => item?.postedBy?._id === user?.aud);
+  let alreadySaved = save?.filter((item) => item?.postedBy?._id === user?.sub);
 
   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
@@ -37,10 +37,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user?.aud,
+            userId: user?.sub,
             postedBy: {
               _type: "postedBy",
-              _ref: user?.aud,
+              _ref: user?.sub,
             },
           },
         ])
@@ -117,7 +117,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   {destination?.slice(8, 17)}...
                 </a>
               ) : undefined}
-              {postedBy?._id === user?.aud && (
+              {postedBy?._id === user?.sub && (
                 <button
                   className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity75 hover:opacity-100 outline-none"
                   type="button"

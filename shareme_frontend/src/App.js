@@ -13,7 +13,7 @@ function App() {
         : localStorage.clear();
 
     if (!User) navigate("/login");
-  }, []);
+  }, [navigate]);
 
   return (
     <div>

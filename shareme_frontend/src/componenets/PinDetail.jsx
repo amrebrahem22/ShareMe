@@ -8,6 +8,7 @@ import MasonryLayout from "./MasonryLayout";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import Spinner from "./Spinner";
 import { useCallback } from "react";
+import { AiOutlineLink } from "react-icons/ai";
 
 const PinDetail = ({ user }) => {
   const { pinId } = useParams();
@@ -62,7 +63,8 @@ const PinDetail = ({ user }) => {
 
   useEffect(() => {
     fetchPinDetails();
-  }, [fetchPinDetails, pinDetail]);
+    return () => setPinDetail(null);
+  }, [fetchPinDetails]);
 
   if (!pinDetail) {
     return <Spinner message="Showing pin" />;
@@ -93,8 +95,14 @@ const PinDetail = ({ user }) => {
                   <MdDownloadForOffline />
                 </a>
               </div>
-              <a href={pinDetail.destination} target="_blank" rel="noreferrer">
-                {pinDetail.destination?.slice(8)}
+              <a
+                href={pinDetail.destination}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-secondaryColor p-2 text-base rounded-full flex items-center justify-center gap-1 text-dark opacity-75 hover:opacity-100"
+              >
+                <AiOutlineLink />
+                {pinDetail.destination?.slice(8, 40)}
               </a>
             </div>
             <div>
@@ -109,7 +117,7 @@ const PinDetail = ({ user }) => {
             >
               <img
                 src={pinDetail?.postedBy.image}
-                className="w-10 h-10 rounded-full"
+                className="w-10 h-10 rounded-full aspect-square"
                 alt="user-profile"
               />
               <p className="font-bold">{pinDetail?.postedBy.userName}</p>

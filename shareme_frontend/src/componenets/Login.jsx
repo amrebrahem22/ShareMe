@@ -11,21 +11,26 @@ const Login = () => {
   const navigate = useNavigate();
 
   const responseGoogle = (response) => {
-    localStorage.clear();
+    localStorage.removeItem("user");
+    console.log("before set user: ", JSON.parse(localStorage.getItem("user")));
+    console.log("response: ", response);
     let decoded = jwt_decode(response.credential);
-
+    console.log("decoded: ", decoded);
     localStorage.setItem("user", JSON.stringify(decoded));
-
-    const { name, aud, picture } = decoded;
+    console.log("after set user: ", JSON.parse(localStorage.getItem("user")));
+    const { name, sub, picture } = decoded;
     const doc = {
-      _id: aud,
+      _id: sub,
       _type: "user",
       userName: name,
       image: picture,
     };
 
-    client.createIfNotExists(doc).then(() => {
-      navigate("/", { replace: true });
+    console.log("new document: ", doc);
+
+    client.createIfNotExists(doc).then((res) => {
+      console.log("sanity respose: ", res);
+      navigate("/");
     });
   };
   return (
